@@ -10,13 +10,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "br.com.materdei.adouami")
-public class AppWebConfiguration extends WebMvcConfigurerAdapter
-{
+public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
-   @Override
-   public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
-   {
-      configurer.enable();
-   }
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
 
 }
