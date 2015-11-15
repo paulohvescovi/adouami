@@ -2,7 +2,7 @@
 <html lang="pt-br" class="no-js">
 <head>
     <meta charset="utf-8">
-    <title>TODO Client</title>
+    <title>ADOUAMI - Sotware para controle de adoção de animais</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSS Theme -->
@@ -10,7 +10,7 @@
     <!--link rel="stylesheet" href="lib/bootstrap/css/bootstrap-theme.min.css" /-->
 
     <!-- CSS Aplicação -->
-    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/adouami-estilo.css" />
 
     <!-- Web Fonts -->
     <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
@@ -30,28 +30,32 @@
     <script src="js/app.js"></script>
 
     <!-- Controller's da Aplicação -->
-    <script src="js/home-controller.js"></script>
-    <script src="js/config-controller.js"></script>
+    <script src="js/controllers/estado-controller.js"></script>
     
     <!-- Services da Aplicação -->
-    <script src="js/taskboards-service.js"></script>
+    <script src="js/services/estado-service.js"></script>
 
 </head>
-<body ng-app="appLP4">
+<body ng-app="appAdouami">
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <header>
-        <div class="container">
-            <a class="btn btn-default pull-right" href="#/config" title ="Configurações">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            
-            <a class="btn btn-default pull-right" href="#/home" title ="Início">
-                <span class="glyphicon glyphicon-list-alt"></span>
-            </a>
-        </div>
-    </header>
+
+    <div class="menu-lateral">
+        <h1 class="menu-h1">Menu</h1>
+        <div class="linha-horizontal"></div>
+        <nav>
+            <ul class="nav menu-ul">
+                <li ng-class="{active: activetab == '/estados'}" class="menu-item-li"><a class="menu-item" href="#/estados">Estados</a></li>
+                <div class="divider linha-horizontal"></div>
+                <!--<li ng-class="{active: activetab == '/programadores'}" class="menu-item-li"><a class="menu-item" href="#/programadores">Programadores</a></li>-->
+                <!--<div class="divider linha-horizontal"></div>-->
+                <!--<li ng-class="{active: activetab == '/tarefas'}" class="menu-item-li"><a class="menu-item" href="#/tarefas">Tarefas</a></li>-->
+                <!--<div class="divider linha-horizontal"></div>-->
+            </ul>
+        </nav>
+
+    </div>
 
     <div class="container">
         <div ng-view></div>

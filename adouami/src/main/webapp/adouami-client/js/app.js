@@ -1,20 +1,16 @@
-var urlREST = 'http://localhost:8084/todo-rest';
+var urlREST = 'http://localhost:8080';
 
-var appLP4 = angular.module('appLP4', ['ngRoute'])
+var appAdouami = angular.module('appAdouami', ['ngRoute'])
 
 .config(function( $routeProvider ){
     
     $routeProvider
-        .when('/home', {
-            templateUrl: 'templates/home.html',
-            controller: 'HomeController'
-        })
-        .when('/config', {
-            templateUrl: 'templates/config.html',
-            controller: 'ConfigController'
+        .when('/estados', {
+            templateUrl: 'templates/estado.html',
+            controller: 'EstadoController'
         });
     
     
-    $routeProvider.otherwise('/home');
+    $routeProvider.otherwise('/estados');
     
 });
