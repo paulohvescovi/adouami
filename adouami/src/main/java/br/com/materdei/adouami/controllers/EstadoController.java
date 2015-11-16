@@ -22,8 +22,8 @@ public class EstadoController {
     }
 
 
-    @RequestMapping(value = "/estados/salvar", method = RequestMethod.POST)
-    public Estado save(@ModelAttribute("estado") Estado estado){
+    @RequestMapping(value = "/estados", method = RequestMethod.POST)
+    public Estado save(@RequestBody Estado estado){
         try {
             estadoService.persist(estado);
         } catch (Exception e){
