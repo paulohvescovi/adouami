@@ -1,6 +1,5 @@
 package br.com.materdei.adouami.controllers;
 
-import br.com.materdei.adouami.daos.IAnimalDao;
 import br.com.materdei.adouami.models.Animal;
 import br.com.materdei.adouami.services.IAnimalService;
 import org.springframework.beans.factory.annotation.Autowired;

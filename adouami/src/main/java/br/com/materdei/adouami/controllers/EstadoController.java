@@ -32,4 +32,24 @@ public class EstadoController {
         return estado;
     }
 
+    @RequestMapping(value = "/estados/{id}", method = RequestMethod.POST)
+    public Estado update(@PathVariable("id") Integer id, @RequestBody Estado estado){
+        try {
+            estadoService.persist(estado);
+        } catch (Exception e){
+            estadoService.update(estado);
+        }
+        return estado;
+    }
+
+    @RequestMapping(value = "/estados", method = RequestMethod.DELETE)
+    public Estado delete(@RequestBody Estado estado){
+        try {
+            estadoService.delete(estado);
+        } catch (Exception e){
+            return estado;
+        }
+        return estado;
+    }
+
 }

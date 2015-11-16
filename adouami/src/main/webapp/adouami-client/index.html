@@ -31,9 +31,13 @@
 
     <!-- Controller's da Aplicação -->
     <script src="js/controllers/estado-controller.js"></script>
+    <script src="js/controllers/cidade-controller.js"></script>
+    <script src="js/controllers/pessoa-controller.js"></script>
     
     <!-- Services da Aplicação -->
     <script src="js/services/estado-service.js"></script>
+    <script src="js/services/cidade-service.js"></script>
+    <script src="js/services/pessoa-service.js"></script>
 
 </head>
 <body ng-app="appAdouami">
@@ -48,10 +52,10 @@
             <ul class="nav menu-ul">
                 <li ng-class="{active: activetab == '/estados'}" class="menu-item-li"><a class="menu-item" href="#/estados">Estados</a></li>
                 <div class="divider linha-horizontal"></div>
-                <!--<li ng-class="{active: activetab == '/programadores'}" class="menu-item-li"><a class="menu-item" href="#/programadores">Programadores</a></li>-->
-                <!--<div class="divider linha-horizontal"></div>-->
-                <!--<li ng-class="{active: activetab == '/tarefas'}" class="menu-item-li"><a class="menu-item" href="#/tarefas">Tarefas</a></li>-->
-                <!--<div class="divider linha-horizontal"></div>-->
+                <li ng-class="{active: activetab == '/cidades'}" class="menu-item-li"><a class="menu-item" href="#/cidades">Cidades</a></li>
+                <div class="divider linha-horizontal"></div>
+                <li ng-class="{active: activetab == '/pessoas'}" class="menu-item-li"><a class="menu-item" href="#/pessoas">Pessoas</a></li>
+                <div class="divider linha-horizontal"></div>
             </ul>
         </nav>
 

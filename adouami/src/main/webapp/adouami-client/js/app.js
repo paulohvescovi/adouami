@@ -8,6 +8,14 @@ var appAdouami = angular.module('appAdouami', ['ngRoute'])
         .when('/estados', {
             templateUrl: 'templates/estado.html',
             controller: 'EstadoController'
+        })
+        .when('/pessoas', {
+            templateUrl: 'templates/pessoa.html',
+            controller: 'PessoaController'
+        })
+        .when('/cidades', {
+            templateUrl: 'templates/cidade.html',
+            controller: 'CidadeController'
         });
     
     
