@@ -1,7 +1,6 @@
 package br.com.materdei.adouami.controllers;
 
 import br.com.materdei.adouami.models.Pessoa;
-import br.com.materdei.adouami.models.Pessoa;
 import br.com.materdei.adouami.services.IPessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
