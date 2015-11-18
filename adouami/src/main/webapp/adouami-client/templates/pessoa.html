@@ -1,0 +1,211 @@
+<h1 class="sistema-h1">Cadastro de Pessoas</h1>
+
+<!-- Exibe os dados -->
+<div class="panel panel-primary">
+    <div class="panel-heading table-border table-header-custom">Lista de Pessoas</div>
+    <div class="panel-body">
+        <p ng-if="pessoas.length == 0" class="text-danger">Não existem registros para serem exibidos!</p>
+        <input ng-show="pessoas.length > 0" type="text" class="form-control input-busca  edit-text"
+               ng-model="criterioBusca" placeholder="O que você está buscando?"/>
+        <table ng-if="pessoas.length > 0" class="table table-striped table-condensed">
+            <thead>
+            <tr>
+                <th width="20px"></th>
+                <th><a href="" ng-click="ordernarPor('nome')" class="title-col">Nome Pessoa</a></th>
+                <th><a href="" ng-click="ordernarPor('celular')" class="title-col">Telefone</a></th>
+                <th>Visualizar</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-class="{selecionado: pessoa.selecionado}"
+                ng-repeat="pessoa in pessoas | filter:{nome: criterioBusca} | orderBy: criterioOrdenacao:direcaoOrdenacao">
+                <td><input type="checkbox" ng-model="pessoa.selecionado"/></td>
+                <td>{{ pessoa.nome }}</td>
+                <td>{{ pessoa.celular }}</td>
+                <td><button ng-click="showDialog(pessoa)" class="btn btn-default">Open modal</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-danger pull-right botao" ng-if="isSelecionado(pessoas)" ng-click="remover(pessoas)">
+            Remover Selecionados
+        </button>
+    </div>
+
+    <div class="panel-footer">
+        <h3>Adicionar Pessoa</h3>
+
+        <form name="pessoaForm">
+            <input type="text" class="form-control edit-text" name="descricao" ng-model="pessoa.descricao"
+                   placeholder="Nome do Pessoa"
+                   ng-required="true" ng-minlength="3" ng-maxlength="40"/>
+
+            <div class="msg-erro" ng-show="pessoaForm.nome.$dirty && pessoaForm.nome.$invalid">
+                <small ng-show="pessoaForm.nome.$error.required">* Campo obrigatório</small>
+                <small ng-show="pessoaForm.nome.$error.minlength">* O "Nome do Pessoa" deve ter mais que 3 caracteres
+                </small>
+                <small ng-show="pessoaForm.nome.$error.maxlength">* O "Nome do Pessoa" deve ter menos que 40
+                    caracteres
+                </small>
+            </div>
+
+            <select class="form-control edit-text" name="pessoa" ng-model="pessoa.cidade"
+                    ng-options="cidade.descricao for cidade in cidades | orderBy:'descricao'"
+                    ng-required="true" ng-controller="CidadeController">
+                <option value="">Selecione uma Cidade</option>
+            </select>
+
+            <div class="msg-erro" ng-show="pessoaForm.estado.$dirty && pessoaForm.estado.$invalid">
+                <small ng-show="pessoaForm.estado.$error.required">* Campo obrigatório</small>
+            </div>
+
+        </form>
+        <button class="btn btn-primary btn-block botao" ng-click="salvarPessoa(pessoa)"
+                ng-disabled="pessoaForm.$invalid">Adicionar Pessoa
+        </button>
+    </div>
+
+
+    
+    
+    <!--inicio modal pessoa-->
+    <div>
+        <div ng-controller="ModalController" class="container">
+            <button ng-click="toggleModal()" class="btn btn-default">Open modal</button>
+
+            <modal title="Cadastro da Pessoa" visible="showModal">
+                <form role="cadastroPessoaForm">
+
+                    <span class="title-col">Nome</span>
+                    <input type="text" class="form-control edit-text" name="nome" ng-model="pessoa.nome"
+                           placeholder="Nome da Pessoa"
+                           ng-required="true" ng-minlength="3" ng-maxlength="40"/>
+
+                    <div class="msg-erro" ng-show="cadastroPessoaForm.nome.$dirty && cadastroPessoaForm.nome.$invalid">
+                        <small ng-show="cadastroPessoaForm.nome.$error.required">* Campo obrigatório</small>
+                        <small ng-show="cadastroPessoaForm.nome.$error.minlength">* O "Nome da Pessoa" deve ter mais que
+                            3 caracteres
+                        </small>
+                        <small ng-show="cadastroPessoaForm.nome.$error.maxlength">* O "Nome da Pessoa" deve ter menos
+                            que 40 caracteres
+                        </small>
+                    </div>
+
+
+                    <span class="title-col">Apelido</span>
+                    <input type="text" class="form-control edit-text" name="apelido" ng-model="pessoa.apelido"
+                           placeholder="Apelido da Pessoa"
+                           ng-required="true" ng-minlength="3" ng-maxlength="40"/>
+
+                    <div class="msg-erro"
+                         ng-show="cadastroPessoaForm.apelido.$dirty && cadastroPessoaForm.apelido.$invalid">
+                        <small ng-show="cadastroPessoaForm.apelido.$error.required">* Campo obrigatório</small>
+                        <small ng-show="cadastroPessoaForm.apelido.$error.minlength">* O "Apelido da Pessoa" deve ter
+                            mais que 3 caracteres
+                        </small>
+                        <small ng-show="cadastroPessoaForm.apelido.$error.maxlength">* O "Apelido da Pessoa" deve ter
+                            menos que 40 caracteres
+                        </small>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="title-col">CPF</span>
+                            <input type="text" class="form-control edit-text" name="cpnjf" ng-model="pessoa.cpjf"
+                                   placeholder="CPF da Pessoa"
+                                   ng-required="true" ng-minlength="11" ng-maxlength="11"/>
+
+                            <div class="msg-erro"
+                                 ng-show="cadastroPessoaForm.cpnjf.$dirty && cadastroPessoaForm.cpnjf.$invalid">
+                                <small ng-show="cadastroPessoaForm.cpnjf.$error.required">* Campo obrigatório</small>
+                                <small ng-show="cadastroPessoaForm.cpnjf.$error.minlength">* O "CPF da Pessoa" deve ter
+                                    11 caracteres
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="title-col">Celular</span>
+                            <input type="text" class="form-control edit-text" name="celular" ng-model="pessoa.celular"
+                                   placeholder="Celular da Pessoa"
+                                   ng-required="true" ng-minlength="10" ng-maxlength="11"/>
+
+                            <div class="msg-erro"
+                                 ng-show="cadastroPessoaForm.celular.$dirty && cadastroPessoaForm.celular.$invalid">
+                                <small ng-show="cadastroPessoaForm.celular.$error.required">* Campo obrigatório</small>
+                                <small ng-show="cadastroPessoaForm.celular.$error.minlength">* O "Celular da Pessoa"
+                                    deve ter pelo menos 10 caracteres
+                                </small>
+                                <small ng-show="cadastroPessoaForm.celular.$error.maxlength">* O "Celular da Pessoa"
+                                    deve ter pelo menos 11 caracteres
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <span class="title-col">Endereço</span>
+                            <input type="text" class="form-control edit-text" name="rua" ng-model="pessoa.rua"
+                                   placeholder="Endereço da Pessoa"
+                                   ng-required="true" ng-minlength="5" ng-maxlength="200"/>
+
+                            <div class="msg-erro"
+                                 ng-show="cadastroPessoaForm.rua.$dirty && cadastroPessoaForm.rua.$invalid">
+                                <small ng-show="cadastroPessoaForm.rua.$error.required">* Campo obrigatório</small>
+                                <small ng-show="cadastroPessoaForm.rua.$error.minlength">* O "Endereço da Pessoa" deve
+                                    ter pelo menos 5 caracteres
+                                </small>
+                                <small ng-show="cadastroPessoaForm.rua.$error.maxlength">*O "Endereço da Pessoa" deve
+                                    menos que 200 caracteres
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <span class="title-col">Numero</span>
+                            <input type="text" class="form-control edit-text" name="numero" ng-model="pessoa.numero"
+                                   placeholder="Numero da casa da Pessoa"
+                                   ng-required="true" ng-minlength="1" ng-maxlength="7"/>
+
+                            <div class="msg-erro"
+                                 ng-show="cadastroPessoaForm.numero.$dirty && cadastroPessoaForm.rua.$invalid">
+                                <small ng-show="cadastroPessoaForm.numero.$error.required">* Campo obrigatório</small>
+                                <small ng-show="cadastroPessoaForm.numero.$error.minlength">* O "NUmero da casa da
+                                    Pessoa" deve ter pelo menos 1 caracteres
+                                </small>
+                                <small ng-show="cadastroPessoaForm.numero.$error.maxlength">*O "Numero da casa da
+                                    Pessoa" deve menos que 7 caracteres
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="title-col">Cidade</span>
+                            <select class="form-control edit-text" name="cidade" ng-model="pessoa.cidade"
+                                    ng-options="cidade.descricao for cidade in cidades | orderBy:'cidade'"
+                                    ng-required="true" ng-controller="CidadeController">
+                                <option value="">Selecione uma Cidade</option>
+                            </select>
+
+                            <div class="msg-erro"
+                                 ng-show="cadastroPessoaForm.cidade.$dirty && cadastroPessoaForm.cidade.$invalid">
+                                <small ng-show="cadastroPessoaForm.cidade.$error.required">* Campo obrigatório</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="title-col">Profissão</span>
+                            <input type="text" class="form-control edit-text" name="profissao"
+                                   ng-model="pessoa.profissao" placeholder="Profissão da Pessoa"/>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary">Fechar</button>
+                </form>
+            </modal>
+        </div>
+    </div>
+    <!--fim modal pessoa-->
+
+
+</div>
