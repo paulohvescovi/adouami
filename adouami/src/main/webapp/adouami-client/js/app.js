@@ -21,6 +21,10 @@ var appAdouami = angular.module('appAdouami', ['ngRoute'])
             templateUrl: 'templates/animal.html',
             controller: 'AnimalController'
         })
+        .when('/adocoesvenda', {
+            templateUrl: 'templates/adocao-venda.html',
+            controller: 'AdocaoVendaController'
+        })
         .when('/cidades', {
             templateUrl: 'templates/cidade.html',
             controller: 'CidadeController'
