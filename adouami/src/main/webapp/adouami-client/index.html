@@ -28,6 +28,8 @@
 
     <!-- Library's Bootstrap -->
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
+    <script src="lib/ui-bootstrap-0.14.3.min.js"></script>
 
     <!-- JavaScript's da Aplicação -->
     <script src="js/app.js"></script>
@@ -36,12 +38,15 @@
     <script src="js/controllers/estado-controller.js"></script>
     <script src="js/controllers/cidade-controller.js"></script>
     <script src="js/controllers/pessoa-controller.js"></script>
-    <script src="js/controllers/modal-controller.js"></script>
+    <script src="js/controllers/raca-controller.js"></script>
+    <script src="js/controllers/animal-controller.js"></script>
     
     <!-- Services da Aplicação -->
     <script src="js/services/estado-service.js"></script>
     <script src="js/services/cidade-service.js"></script>
     <script src="js/services/pessoa-service.js"></script>
+    <script src="js/services/raca-service.js"></script>
+    <script src="js/services/animal-service.js"></script>
 </head>
 <body ng-app="appAdouami">
     <!--[if lt IE 7]>
@@ -58,6 +63,10 @@
                 <li ng-class="{active: activetab == '/cidades'}" class="menu-item-li"><a class="menu-item" href="#/cidades">Cidades</a></li>
                 <div class="divider linha-horizontal"></div>
                 <li ng-class="{active: activetab == '/pessoas'}" class="menu-item-li"><a class="menu-item" href="#/pessoas">Pessoas</a></li>
+                <div class="divider linha-horizontal"></div>
+                <li ng-class="{active: activetab == '/racas'}" class="menu-item-li"><a class="menu-item" href="#/racas">Raças</a></li>
+                <div class="divider linha-horizontal"></div>
+                <li ng-class="{active: activetab == '/animais'}" class="menu-item-li"><a class="menu-item" href="#/animais">Animais</a></li>
                 <div class="divider linha-horizontal"></div>
             </ul>
         </nav>

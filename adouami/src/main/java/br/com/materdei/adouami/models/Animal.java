@@ -17,7 +17,7 @@ public class Animal {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private TipoAnimal tipo;
-    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="raca_id", referencedColumnName="id")
     private Raca raca;
     @Column(nullable = false)

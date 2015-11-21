@@ -12,10 +12,10 @@
         }
         
         function edit(pessoa){
-            return $http.post( url+'/pessoas/'+pessoa.id, pessoa);
+            return $http.post( url+'/pessoas/'+pessoa.id,pessoa);
         }
         function remove(pessoa){
-            return $http.delete( url+'/pessoas/'+pessoa.id);
+            return $http.delete( url+'/pessoas',pessoa);
         }
         
         return ({

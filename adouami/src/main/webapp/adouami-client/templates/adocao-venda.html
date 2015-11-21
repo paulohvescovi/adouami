@@ -1,0 +1,174 @@
+<h1 class="sistema-h1">Cadastro de Adoção / Venda de animal</h1>
+
+<!-- Exibe os dados -->
+<div class="panel panel-primary">
+    
+
+    <div class="panel-footer">
+        <h3>Adicionar Venda ou Adoção do Animal</h3>
+
+        <form name="cadastroAdocaoVendaForm">
+            
+                    <input type="text" class="form-control edit-text invisible" name="id" ng-model="adocaovenda.id"/>
+                    <span class="title-col">Nome</span>
+                    <input type="text" class="form-control edit-text" name="nome" ng-model="adocaovenda.nome"
+                           placeholder="Nome da AdocaoVenda"
+                           ng-required="true" ng-minlength="3" ng-maxlength="40"/>
+
+                    <div class="msg-erro" ng-show="cadastroAdocaoVendaForm.nome.$dirty && cadastroAdocaoVendaForm.nome.$invalid">
+                        <small ng-show="cadastroAdocaoVendaForm.nome.$error.required">* Campo obrigatório</small>
+                        <small ng-show="cadastroAdocaoVendaForm.nome.$error.minlength">* O "Nome da AdocaoVenda" deve ter mais que
+                            3 caracteres
+                        </small>
+                        <small ng-show="cadastroAdocaoVendaForm.nome.$error.maxlength">* O "Nome da AdocaoVenda" deve ter menos
+                            que 40 caracteres
+                        </small>
+                    </div>
+
+                    <span class="title-col">Apelido</span>
+                    <input type="text" class="form-control edit-text" name="apelido" ng-model="adocaovenda.apelido"
+                           placeholder="Apelido da AdocaoVenda"
+                           ng-required="true" ng-minlength="3" ng-maxlength="40"/>
+
+                    <div class="msg-erro"
+                         ng-show="cadastroAdocaoVendaForm.apelido.$dirty && cadastroAdocaoVendaForm.apelido.$invalid">
+                        <small ng-show="cadastroAdocaoVendaForm.apelido.$error.required">* Campo obrigatório</small>
+                        <small ng-show="cadastroAdocaoVendaForm.apelido.$error.minlength">* O "Apelido da AdocaoVenda" deve ter
+                            mais que 3 caracteres
+                        </small>
+                        <small ng-show="cadastroAdocaoVendaForm.apelido.$error.maxlength">* O "Apelido da AdocaoVenda" deve ter
+                            menos que 40 caracteres
+                        </small>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="title-col">CPF</span>
+                            <input type="text" class="form-control edit-text" name="cpnjf" ng-model="adocaovenda.cnpjf"
+                                   placeholder="CPF da AdocaoVenda"
+                                   ng-required="true" ng-minlength="11" ng-maxlength="11"/>
+
+                            <div class="msg-erro"
+                                 ng-show="cadastroAdocaoVendaForm.cpnjf.$dirty && cadastroAdocaoVendaForm.cpnjf.$invalid">
+                                <small ng-show="cadastroAdocaoVendaForm.cpnjf.$error.required">* Campo obrigatório</small>
+                                <small ng-show="cadastroAdocaoVendaForm.cpnjf.$error.minlength">* O "CPF da AdocaoVenda" deve ter
+                                    11 caracteres
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="title-col">Celular</span>
+                            <input type="text" class="form-control edit-text" name="celular" ng-model="adocaovenda.celular"
+                                   placeholder="Celular da AdocaoVenda"
+                                   ng-required="true" ng-minlength="10" ng-maxlength="11"/>
+
+                            <div class="msg-erro"
+                                 ng-show="cadastroAdocaoVendaForm.celular.$dirty && cadastroAdocaoVendaForm.celular.$invalid">
+                                <small ng-show="cadastroAdocaoVendaForm.celular.$error.required">* Campo obrigatório</small>
+                                <small ng-show="cadastroAdocaoVendaForm.celular.$error.minlength">* O "Celular da AdocaoVenda"
+                                    deve ter pelo menos 10 caracteres
+                                </small>
+                                <small ng-show="cadastroAdocaoVendaForm.celular.$error.maxlength">* O "Celular da AdocaoVenda"
+                                    deve ter pelo menos 11 caracteres
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+            
+             <div class="row">
+                        <div class="col-md-10">
+                            <span class="title-col">Endereço</span>
+                            <input type="text" class="form-control edit-text" name="rua" ng-model="adocaovenda.rua"
+                                   placeholder="Endereço da AdocaoVenda"
+                                   ng-required="true" ng-minlength="5" ng-maxlength="200"/>
+
+                            <div class="msg-erro"
+                                 ng-show="cadastroAdocaoVendaForm.rua.$dirty && cadastroAdocaoVendaForm.rua.$invalid">
+                                <small ng-show="cadastroAdocaoVendaForm.rua.$error.required">* Campo obrigatório</small>
+                                <small ng-show="cadastroAdocaoVendaForm.rua.$error.minlength">* O "Endereço da AdocaoVenda" deve
+                                    ter pelo menos 5 caracteres
+                                </small>
+                                <small ng-show="cadastroAdocaoVendaForm.rua.$error.maxlength">*O "Endereço da AdocaoVenda" deve
+                                    menos que 200 caracteres
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <span class="title-col">Numero</span>
+                            <input type="text" class="form-control edit-text" name="numero" ng-model="adocaovenda.numero"
+                                   placeholder="Numero da casa da AdocaoVenda"
+                                   ng-required="true" ng-minlength="1" ng-maxlength="7"/>
+
+                            <div class="msg-erro"
+                                 ng-show="cadastroAdocaoVendaForm.numero.$dirty && cadastroAdocaoVendaForm.rua.$invalid">
+                                <small ng-show="cadastroAdocaoVendaForm.numero.$error.required">* Campo obrigatório</small>
+                                <small ng-show="cadastroAdocaoVendaForm.numero.$error.minlength">* O "NUmero da casa da
+                                    AdocaoVenda" deve ter pelo menos 1 caracteres
+                                </small>
+                                <small ng-show="cadastroAdocaoVendaForm.numero.$error.maxlength">*O "Numero da casa da
+                                    AdocaoVenda" deve menos que 7 caracteres
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="title-col">Cidade</span>
+                            <select class="form-control edit-text" name="cidade" ng-model="adocaovenda.cidade"
+                                    ng-options="cidade.descricao for cidade in cidades | orderBy:'cidade'"
+                                    ng-required="true" ng-controller="CidadeController">
+                                <option value="">Selecione uma Cidade</option>
+                            </select>
+
+                            <div class="msg-erro"
+                                 ng-show="cadastroAdocaoVendaForm.cidade.$dirty && cadastroAdocaoVendaForm.cidade.$invalid">
+                                <small ng-show="cadastroAdocaoVendaForm.cidade.$error.required">* Campo obrigatório</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="title-col">Profissão</span>
+                            <input type="text" class="form-control edit-text" name="profissao"
+                                   ng-model="adocaovenda.profissao" placeholder="Profissão da AdocaoVenda"/>
+                        </div>
+                    </div>
+
+            
+            
+        </form>
+        <button class="btn btn-primary btn-block botao" ng-click="salvarAdocaoVenda(adocaovenda)"
+                ng-disabled="adocaovendaForm.$invalid">Adicionar AdocaoVenda
+        </button>
+    </div>
+    
+    <div class="panel-heading table-border table-header-custom">Lista de AdocaoVendas</div>
+    <div class="panel-body">
+        <p ng-if="adocoesvenda.length == 0" class="text-danger">Não existem registros para serem exibidos!</p>
+        <input ng-show="adocoesvenda.length > 0" type="text" class="form-control input-busca  edit-text"
+               ng-model="criterioBusca" placeholder="O que você está buscando?"/>
+        <table ng-if="adocoesvenda.length > 0" class="table table-striped table-condensed">
+            <thead>
+            <tr>
+                <th width="20px"></th>
+                <th><a href="" ng-click="ordernarPor('nome')" class="title-col">Nome AdocaoVenda</a></th>
+                <th><a href="" ng-click="ordernarPor('celular')" class="title-col">Telefone</a></th>
+                <th>Editar</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-class="{selecionado: adocaovenda.selecionado}"
+                ng-repeat="adocaovenda in adocoesvenda | filter:{nome: criterioBusca} | orderBy: criterioOrdenacao:direcaoOrdenacao">
+                <td><input type="checkbox" ng-model="adocaovenda.selecionado"/></td>
+                <td>{{ adocaovenda.nome }}</td>
+                <td>{{ adocaovenda.celular }}</td>
+                <td>
+                    <button ng-click="editarAdocaoVenda(adocaovenda)" class="btn btn-success pull-right botao">Editar</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-danger pull-right botao" ng-if="isSelecionado(adocoesvenda)" ng-click="remover(adocoesvenda)">Remover Selecionados</button>
+    </div>
+
+</div>

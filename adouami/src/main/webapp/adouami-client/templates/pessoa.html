@@ -13,7 +13,7 @@
                 <th width="20px"></th>
                 <th><a href="" ng-click="ordernarPor('nome')" class="title-col">Nome Pessoa</a></th>
                 <th><a href="" ng-click="ordernarPor('celular')" class="title-col">Telefone</a></th>
-                <th>Visualizar</th>
+                <th>Editar</th>
             </tr>
             </thead>
 
@@ -23,59 +23,21 @@
                 <td><input type="checkbox" ng-model="pessoa.selecionado"/></td>
                 <td>{{ pessoa.nome }}</td>
                 <td>{{ pessoa.celular }}</td>
-                <td><button ng-click="showDialog(pessoa)" class="btn btn-default">Open modal</button></td>
+                <td>
+                    <button ng-click="editarPessoa(pessoa)" class="btn btn-success pull-right botao">Editar</button>
+                </td>
             </tr>
             </tbody>
         </table>
-        <button class="btn btn-danger pull-right botao" ng-if="isSelecionado(pessoas)" ng-click="remover(pessoas)">
-            Remover Selecionados
-        </button>
+        <button class="btn btn-danger pull-right botao" ng-if="isSelecionado(pessoas)" ng-click="remover(pessoas)">Remover Selecionados</button>
     </div>
 
     <div class="panel-footer">
         <h3>Adicionar Pessoa</h3>
 
-        <form name="pessoaForm">
-            <input type="text" class="form-control edit-text" name="descricao" ng-model="pessoa.descricao"
-                   placeholder="Nome do Pessoa"
-                   ng-required="true" ng-minlength="3" ng-maxlength="40"/>
-
-            <div class="msg-erro" ng-show="pessoaForm.nome.$dirty && pessoaForm.nome.$invalid">
-                <small ng-show="pessoaForm.nome.$error.required">* Campo obrigatório</small>
-                <small ng-show="pessoaForm.nome.$error.minlength">* O "Nome do Pessoa" deve ter mais que 3 caracteres
-                </small>
-                <small ng-show="pessoaForm.nome.$error.maxlength">* O "Nome do Pessoa" deve ter menos que 40
-                    caracteres
-                </small>
-            </div>
-
-            <select class="form-control edit-text" name="pessoa" ng-model="pessoa.cidade"
-                    ng-options="cidade.descricao for cidade in cidades | orderBy:'descricao'"
-                    ng-required="true" ng-controller="CidadeController">
-                <option value="">Selecione uma Cidade</option>
-            </select>
-
-            <div class="msg-erro" ng-show="pessoaForm.estado.$dirty && pessoaForm.estado.$invalid">
-                <small ng-show="pessoaForm.estado.$error.required">* Campo obrigatório</small>
-            </div>
-
-        </form>
-        <button class="btn btn-primary btn-block botao" ng-click="salvarPessoa(pessoa)"
-                ng-disabled="pessoaForm.$invalid">Adicionar Pessoa
-        </button>
-    </div>
-
-
-    
-    
-    <!--inicio modal pessoa-->
-    <div>
-        <div ng-controller="ModalController" class="container">
-            <button ng-click="toggleModal()" class="btn btn-default">Open modal</button>
-
-            <modal title="Cadastro da Pessoa" visible="showModal">
-                <form role="cadastroPessoaForm">
-
+        <form name="cadastroPessoaForm">
+            
+                    <input type="text" class="form-control edit-text invisible" name="id" ng-model="pessoa.id"/>
                     <span class="title-col">Nome</span>
                     <input type="text" class="form-control edit-text" name="nome" ng-model="pessoa.nome"
                            placeholder="Nome da Pessoa"
@@ -90,7 +52,6 @@
                             que 40 caracteres
                         </small>
                     </div>
-
 
                     <span class="title-col">Apelido</span>
                     <input type="text" class="form-control edit-text" name="apelido" ng-model="pessoa.apelido"
@@ -107,11 +68,11 @@
                             menos que 40 caracteres
                         </small>
                     </div>
-
+            
                     <div class="row">
                         <div class="col-md-6">
                             <span class="title-col">CPF</span>
-                            <input type="text" class="form-control edit-text" name="cpnjf" ng-model="pessoa.cpjf"
+                            <input type="text" class="form-control edit-text" name="cpnjf" ng-model="pessoa.cnpjf"
                                    placeholder="CPF da Pessoa"
                                    ng-required="true" ng-minlength="11" ng-maxlength="11"/>
 
@@ -141,8 +102,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
+            
+             <div class="row">
                         <div class="col-md-10">
                             <span class="title-col">Endereço</span>
                             <input type="text" class="form-control edit-text" name="rua" ng-model="pessoa.rua"
@@ -200,12 +161,12 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary">Fechar</button>
-                </form>
-            </modal>
-        </div>
+            
+            
+        </form>
+        <button class="btn btn-primary btn-block botao" ng-click="salvarPessoa(pessoa)"
+                ng-disabled="pessoaForm.$invalid">Adicionar Pessoa
+        </button>
     </div>
-    <!--fim modal pessoa-->
-
 
 </div>

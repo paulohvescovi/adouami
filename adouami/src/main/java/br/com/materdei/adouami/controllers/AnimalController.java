@@ -3,12 +3,8 @@ package br.com.materdei.adouami.controllers;
 import br.com.materdei.adouami.models.Animal;
 import br.com.materdei.adouami.services.IAnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.util.List;
 
 /**
@@ -22,6 +18,36 @@ public class AnimalController {
     @RequestMapping("/animais")
     public List<Animal> findAllAnimais(){
         return animalService.findAllObjects();
+    }
+
+    @RequestMapping(value = "/animais", method = RequestMethod.POST)
+    public Animal save(@RequestBody Animal animal){
+        try {
+            animalService.persist(animal);
+        } catch (Exception e){
+            animalService.update(animal);
+        }
+        return animal;
+    }
+
+    @RequestMapping(value = "/animais/{id}", method = RequestMethod.POST)
+    public Animal update(@PathVariable("id") Integer id, @RequestBody Animal animal){
+        try {
+            animalService.persist(animal);
+        } catch (Exception e){
+            animalService.update(animal);
+        }
+        return animal;
+    }
+
+    @RequestMapping(value = "/animais", method = RequestMethod.DELETE)
+    public Animal delete(@RequestBody Animal animal){
+        try {
+            animalService.delete(animal);
+        } catch (Exception e){
+            return animal;
+        }
+        return animal;
     }
 
 

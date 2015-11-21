@@ -3,6 +3,7 @@ package br.com.materdei.adouami.controllers;
 import br.com.materdei.adouami.models.Pessoa;
 import br.com.materdei.adouami.services.IPessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class PessoaController {
     }
 
     @RequestMapping(value = "/pessoas", method = RequestMethod.POST)
+    @Transactional
     public Pessoa save(@RequestBody Pessoa pessoa){
         try {
             pessoaService.persist(pessoa);

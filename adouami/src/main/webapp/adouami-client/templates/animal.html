@@ -1,0 +1,68 @@
+<h1 class="sistema-h1">Cadastro de Animais</h1>
+
+<!-- Exibe os dados -->
+<div class="panel panel-primary">
+    <div class="panel-heading table-border table-header-custom">Lista de Animais</div>
+    <div class="panel-body">
+        <p ng-if="animais.length == 0" class="text-danger">Não existem registros para serem exibidos!</p>
+        <input ng-show="animais.length > 0" type="text" class="form-control input-busca  edit-text" ng-model="criterioBusca" placeholder="O que você está buscando?" />
+        <table ng-if="animais.length > 0" class="table table-striped table-condensed">
+            <thead>
+            <tr>
+                <th width="20px"></th>
+                <th><a href="" ng-click="ordernarPor('apelido')" class="title-col">Apelido Animal</a></th>
+                <th><a href="" ng-click="ordernarPor('sigla')" class="title-col">Raca</a></th>
+                <th><a href="" ng-click="ordernarPor('tipo')" class="title-col">Tipo</a></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-class="{selecionado: animal.selecionado}" ng-repeat="animal in animais | filter:{nome: criterioBusca} | orderBy: criterioOrdenacao:direcaoOrdenacao">
+                <td><input type="checkbox" ng-model="animal.selecionado" /> </td>
+                <td>{{ animal.apelido }}</td>
+                <td>{{ animal.raca.descricao }}</td>
+                <td>{{ animal.tipo }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-danger pull-right botao" ng-if="isSelecionado(animais)" ng-click="remover(animais)">Remover Selecionados</button>
+    </div>
+    <div class="panel-footer">
+        <h3>Adicionar Animal</h3>
+        <form name="animalForm">
+            <input type="text" class="form-control edit-text" name="apelido" ng-model="animal.apelido" placeholder="Apelido do Animal"
+                   ng-required="true" ng-minlength="3" ng-maxlength="40" />
+            <div class="msg-erro" ng-show="animalForm.nome.$dirty && animalForm.apelido.$invalid">
+                <small ng-show="animalForm.apelido.$error.required">* Campo obrigatório</small>
+                <small ng-show="animalForm.apelido.$error.minlength">* O "Apelido do Animal" deve ter mais que 3 caracteres</small>
+                <small ng-show="animalForm.apelido.$error.maxlength">* O "Apelido do Animal" deve ter menos que 40 caracteres</small>
+            </div>
+            
+            <input type="text" class="form-control edit-text" name="idade" ng-model="animal.idade" placeholder="Idade do Animal"
+                   ng-required="true" />
+            <div class="msg-erro" ng-show="animalForm.idade.$dirty && animalForm.idade.$invalid">
+                <small ng-show="animalForm.idade.$error.required">* Campo obrigatório</small>
+            </div>
+            
+            <input type="text" class="form-control edit-text" name="observacao" ng-model="animal.observacao" placeholder="Observacao do Animal" />
+            
+            <select class="form-control edit-text" name="animal" ng-model="animal.raca" ng-options="raca.descricao for raca in racas | orderBy:'raca'" 
+                    ng-required="true" ng-controller="RacaController">
+                <option value="">Selecione a Raça </option>
+            </select>
+            <div class="msg-erro" ng-show="animalForm.raca.$dirty && animalForm.raca.$invalid">
+                <small ng-show="animalForm.raca.$error.required">* Campo obrigatório</small>
+            </div>
+            
+            <select class="form-control edit-text" name="tipo" ng-model="animal.tipo" ng-options="tipo for tipo in tipos | orderBy:'tipo'" 
+                    ng-required="true" ng-controller="RacaController">
+                <option value="">Selecione o Tipo </option>
+            </select>
+            <div class="msg-erro" ng-show="animalForm.tipo.$dirty && animalForm.tipo.$invalid">
+                <small ng-show="animalForm.tipo.$error.required">* Campo obrigatório</small>
+            </div>
+            
+        </form>
+        <button class="btn btn-primary btn-block botao" ng-click="salvarAnimal(animal)" ng-disabled="animalForm.$invalid">Adicionar Animal</button>
+    </div>
+</div>

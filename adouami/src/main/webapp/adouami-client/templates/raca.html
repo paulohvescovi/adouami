@@ -1,0 +1,39 @@
+<h1 class="sistema-h1">Cadastro de Racas</h1>
+
+<!-- Exibe os dados -->
+<div class="panel panel-primary">
+    <div class="panel-heading table-border table-header-custom">Lista de Racas</div>
+    <div class="panel-body">
+        <p ng-if="racas.length == 0" class="text-danger">Não existem registros para serem exibidos!</p>
+        <input ng-show="racas.length > 0" type="text" class="form-control input-busca  edit-text" ng-model="criterioBusca" placeholder="O que você está buscando?" />
+        <table ng-if="racas.length > 0" class="table table-striped table-condensed">
+            <thead>
+            <tr>
+                <th width="20px"></th>
+                <th><a href="" ng-click="ordernarPor('descricao')" class="title-col">Nome Raca</a></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-class="{selecionado: raca.selecionado}" ng-repeat="raca in racas | filter:{descricao: criterioBusca} | orderBy: criterioOrdenacao:direcaoOrdenacao">
+                <td><input type="checkbox" ng-model="raca.selecionado" /> </td>
+                <td>{{ raca.descricao }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-danger pull-right botao" ng-if="isSelecionado(racas)" ng-click="remover(racas)">Remover Selecionados</button>
+    </div>
+    <div class="panel-footer">
+        <h3>Adicionar Raca</h3>
+        <form name="racaForm">
+            <input type="text" class="form-control edit-text" name="descricao" ng-model="raca.descricao" placeholder="Nome do Raca"
+                   ng-required="true" ng-minlength="3" ng-maxlength="40" />
+            <div class="msg-erro" ng-show="racaForm.nome.$dirty && racaForm.nome.$invalid">
+                <small ng-show="racaForm.nome.$error.required">* Campo obrigatório</small>
+                <small ng-show="racaForm.nome.$error.minlength">* O "Nome do Raca" deve ter mais que 3 caracteres</small>
+                <small ng-show="racaForm.nome.$error.maxlength">* O "Nome do Raca" deve ter menos que 40 caracteres</small>
+            </div>
+        </form>
+        <button class="btn btn-primary btn-block botao" ng-click="salvarRaca(raca)" ng-disabled="racaForm.$invalid">Adicionar Raca</button>
+    </div>
+</div>

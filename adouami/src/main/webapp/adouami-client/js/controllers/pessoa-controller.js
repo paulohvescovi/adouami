@@ -16,9 +16,14 @@
         };
         
         $scope.salvarPessoa = function(pessoa){
+            if (pessoa.id != null){
+                $scope.updatePessoa(pessoa);
+                return;
+            }
             PessoaService.$add(pessoa)
              .then(function( response ){
                  $scope.pessoas.push(response.data);
+                $scope.pessoa = null;
             }).catch(function(error){
                 $scope.msgError = error.data || 'Falha ao gravar pessoa no servidor';
             });
@@ -30,6 +35,7 @@
                  var index = $scope.pessoas.indexOf(pessoa);
                  $scope.pessoas.splice(index,1);
                  $scope.pessoas.push(response.data);
+                $scope.pessoa = null;
             }).catch(function(error){
                 $scope.msgError = error.data || 'Falha ao gravar pessoa (editar) no servidor';
             });
@@ -61,12 +67,9 @@
         };
 
         //Verifica se está selecionado
-        $scope.showDialog = function(pessoa) {
+        $scope.editarPessoa = function(pessoa) {
             $scope.pessoa = pessoa;
-            $scope.showModal = true;
-        };
-            
-        
+        };        
     };
     
 })( appAdouami, urlREST );

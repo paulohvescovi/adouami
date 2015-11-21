@@ -16,11 +16,11 @@ public class AdocaoVenda {
     @GeneratedValue
     private Integer id;
 
-    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="pessoa_id", referencedColumnName="id", nullable = false)
     private Pessoa pessoa;
 
-    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="animal_id", referencedColumnName="id", nullable = false)
     private Animal animal;
 
@@ -37,7 +37,7 @@ public class AdocaoVenda {
     @Column
     private String observacao;
 
-    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToOne  
     @JoinColumn(name="usuario_id", referencedColumnName="id", nullable = false)
     private Usuario usuario;
 

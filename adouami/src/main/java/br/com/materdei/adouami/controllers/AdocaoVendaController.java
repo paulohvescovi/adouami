@@ -3,10 +3,8 @@ package br.com.materdei.adouami.controllers;
 import br.com.materdei.adouami.models.AdocaoVenda;
 import br.com.materdei.adouami.services.IAdocaoVendaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +25,37 @@ public class AdocaoVendaController {
     @RequestMapping(value = "/adocoesvendas/findById", method = RequestMethod.GET)
     public AdocaoVenda findById(@RequestParam("id") Integer id){
         return adocaoVendaService.getById(id);
+    }
+
+    @RequestMapping(value = "/adocaoVendas", method = RequestMethod.POST)
+    @Transactional
+    public AdocaoVenda save(@RequestBody AdocaoVenda adocaoVenda){
+        try {
+            adocaoVendaService.persist(adocaoVenda);
+        } catch (Exception e){
+            adocaoVendaService.update(adocaoVenda);
+        }
+        return adocaoVenda;
+    }
+
+    @RequestMapping(value = "/adocaoVendas/{id}", method = RequestMethod.POST)
+    public AdocaoVenda update(@PathVariable("id") Integer id, @RequestBody AdocaoVenda adocaoVenda){
+        try {
+            adocaoVendaService.persist(adocaoVenda);
+        } catch (Exception e){
+            adocaoVendaService.update(adocaoVenda);
+        }
+        return adocaoVenda;
+    }
+
+    @RequestMapping(value = "/adocaoVendas", method = RequestMethod.DELETE)
+    public AdocaoVenda delete(@RequestBody AdocaoVenda adocaoVenda){
+        try {
+            adocaoVendaService.delete(adocaoVenda);
+        } catch (Exception e){
+            return adocaoVenda;
+        }
+        return adocaoVenda;
     }
 
 }

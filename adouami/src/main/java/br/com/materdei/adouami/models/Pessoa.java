@@ -27,7 +27,7 @@ public class Pessoa {
     private String celular;
     @Column
     private String numero;
-    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="cidade_id", referencedColumnName="id")
     private Cidade cidade;
     @Column
