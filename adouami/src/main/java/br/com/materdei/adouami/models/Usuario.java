@@ -23,7 +23,7 @@ public class Usuario {
     private TipoUsuario tipoUsuario;
     @Enumerated(EnumType.STRING)
     private SimNao inavito;
-    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="pessoa_id", referencedColumnName="id", nullable = false)
     private Pessoa pessoa;
 
